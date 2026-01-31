@@ -1,0 +1,4 @@
+﻿<Solution>
+  <Project Path="ProjectNahual.FPCharacter.csproj" />
+  <Project Path="ProjectNahual.Input.csproj" />
+</Solution>
