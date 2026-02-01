@@ -9,7 +9,6 @@ namespace ProjectNahual.FPCharacter
     {
         private IWeapon _weapon;
         private IPlayerInput _playerInput;
-        IDamageable target;
 
         public void Init(IPlayerInput playerInput, IWeapon weapon)
         {
@@ -26,9 +25,7 @@ namespace ProjectNahual.FPCharacter
 
         private void OnFire()
         {
-            target = Registry<IDamageable>.GetFirst();
-            if (target == null) return;
-            _weapon.Fire(target);
+            _weapon.Fire();
         }
     }
 }
