@@ -17,7 +17,6 @@ namespace ProjectNahual.Weapons
             health -= amount;
 
             //Apply knockback force
-            rigid.AddForce(transform.forward * knockbackIntensity, ForceMode.Impulse);
             rigid.AddForce(transform.up * knockbackIntensity, ForceMode.Impulse);
             
             Debug.Log("Enemy health: " + health);
