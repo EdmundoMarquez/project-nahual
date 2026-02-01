@@ -1,5 +1,6 @@
 using UnityEngine;
 using ProjectNahual.Input;
+using ProjectNahual.Weapons;
 
 namespace ProjectNahual.FPCharacter
 {
@@ -8,6 +9,10 @@ namespace ProjectNahual.FPCharacter
         [Header("References")]
         [SerializeField] private MovementController movementController;
         [SerializeField] private CameraController cameraController;
+        [SerializeField] private WeaponController weaponController;
+        [SerializeField] private MonoBehaviour weaponBehaviour;
+        
+        public IWeapon weapon;
         private IPlayerInput playerInput;
         private bool initialized;
 
@@ -37,6 +42,14 @@ namespace ProjectNahual.FPCharacter
                 return;
             }
 
+            weapon = weaponBehaviour as IWeapon;
+
+            if(weapon == null)
+            {
+                Debug.LogWarning("IWeapon not found. Add an IWeapon instance to this GameObject.");
+                return;
+            }
+
             initialized = true;
         }
 
@@ -47,6 +60,7 @@ namespace ProjectNahual.FPCharacter
             playerInput = GetComponent<StandaloneInputController>();
             movementController.Init(playerInput);
             cameraController.Init(playerInput);
+            weaponController.Init(playerInput, weapon);
         }
 
 

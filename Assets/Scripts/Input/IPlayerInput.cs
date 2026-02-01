@@ -9,6 +9,8 @@ namespace ProjectNahual.Input
         Vector2 Look { get; }
         event Action JumpPressed;
         event Action CrouchPressed;
+        event Action ShootPressed;
         bool SprintHold { get; }
+        bool AimHold { get; }
     }
 }

@@ -12,6 +12,7 @@ namespace ProjectNahual.Input
         public event Action CrouchPressed;
         public event Action ShootPressed;
         public bool SprintHold { get; set;}
+        public bool AimHold { get; set; }
         private Vector2 _movementValue, _lookValue;
 
         private InputSystem_Actions inputActions;
@@ -30,9 +31,10 @@ namespace ProjectNahual.Input
         // Input System callback implementations
         public void OnMove(InputAction.CallbackContext context) { _movementValue = context.ReadValue<Vector2>(); }
         public void OnLook(InputAction.CallbackContext context) { _lookValue = context.ReadValue<Vector2>(); }
-        public void OnAim(InputAction.CallbackContext context) { }
+        public void OnAim(InputAction.CallbackContext context) { AimHold = context.performed; }
 
         public void OnShoot(InputAction.CallbackContext context) { 
+            if (!AimHold) { return; }
             if(context.performed)
             {
                 ShootPressed?.Invoke();

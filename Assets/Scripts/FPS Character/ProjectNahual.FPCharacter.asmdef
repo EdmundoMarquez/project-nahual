@@ -2,8 +2,10 @@
     "name": "ProjectNahual.FPCharacter",
     "rootNamespace": "ProjectNahual",
     "references": [
+        "GUID:75469ad4d38634e559750d17036d5f7c",
         "GUID:afd51df624764cc44ae5f47db9e31c08",
-        "GUID:75469ad4d38634e559750d17036d5f7c"
+        "GUID:809f56187aaebe7459f73daaeb5caa7a",
+        "GUID:cd7e14c6d608d094284ebb1bf4b0b07b"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
