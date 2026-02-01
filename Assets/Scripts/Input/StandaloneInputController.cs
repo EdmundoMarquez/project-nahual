@@ -30,7 +30,9 @@ namespace ProjectNahual.Input
         // Input System callback implementations
         public void OnMove(InputAction.CallbackContext context) { _movementValue = context.ReadValue<Vector2>(); }
         public void OnLook(InputAction.CallbackContext context) { _lookValue = context.ReadValue<Vector2>(); }
-        public void OnAttack(InputAction.CallbackContext context) { 
+        public void OnAim(InputAction.CallbackContext context) { }
+
+        public void OnShoot(InputAction.CallbackContext context) { 
             if(context.performed)
             {
                 ShootPressed?.Invoke();
@@ -41,7 +43,6 @@ namespace ProjectNahual.Input
         {
             if(context.performed)
             {
-                Debug.Log("Is crouching");
                 CrouchPressed?.Invoke();
             }
         }
