@@ -10,9 +10,7 @@ namespace ProjectNahual.FPCharacter
         [SerializeField] private MovementController movementController;
         [SerializeField] private CameraController cameraController;
         [SerializeField] private WeaponController weaponController;
-        [SerializeField] private MonoBehaviour weaponBehaviour;
-        
-        public IWeapon weapon;
+        public IWeapon _weapon;
         private IPlayerInput playerInput;
         private bool initialized;
 
@@ -42,25 +40,26 @@ namespace ProjectNahual.FPCharacter
                 return;
             }
 
-            weapon = weaponBehaviour as IWeapon;
-
-            if(weapon == null)
-            {
-                Debug.LogWarning("IWeapon not found. Add an IWeapon instance to this GameObject.");
-                return;
-            }
 
             initialized = true;
         }
 
-        private void Start()
+        public void Init(MonoBehaviour weaponBehaviour)
         {
             if (!initialized) { return; }
+
+            _weapon = weaponBehaviour as IWeapon;
+
+            if(_weapon == null)
+            {
+                Debug.LogWarning("IWeapon not found. Add a valid IWeapon instance to the class profiles.");
+                return;
+            }
 
             playerInput = GetComponent<StandaloneInputController>();
             movementController.Init(playerInput);
             cameraController.Init(playerInput);
-            weaponController.Init(playerInput, weapon);
+            weaponController.Init(playerInput, _weapon);
         }
 
 

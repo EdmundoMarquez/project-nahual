@@ -1,0 +1,18 @@
+{
+    "name": "ProjectNahual.GameLoop",
+    "rootNamespace": "",
+    "references": [
+        "GUID:f0d4f82b738d8ec47be9980451d0887e",
+        "GUID:809f56187aaebe7459f73daaeb5caa7a",
+        "GUID:cd7e14c6d608d094284ebb1bf4b0b07b"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
