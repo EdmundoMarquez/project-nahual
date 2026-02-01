@@ -6,7 +6,9 @@
         "UnityEditor.TestRunner",
         "ProjectNahual.Weapons"
     ],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": true,
