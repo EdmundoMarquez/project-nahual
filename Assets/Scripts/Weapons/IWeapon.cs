@@ -4,7 +4,7 @@ namespace ProjectNahual.Weapons
 {
     public interface IWeapon
     {
-        void Fire(IDamageable target);
+        void Fire();
     }
 
     public interface IDamageable
