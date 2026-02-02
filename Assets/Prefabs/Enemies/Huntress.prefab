@@ -1,0 +1,325 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2680331099729364816
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7964036381029888454}
+  - component: {fileID: 1981948398575106102}
+  - component: {fileID: 1547796284585033517}
+  - component: {fileID: 7010400152097787800}
+  m_Layer: 7
+  m_Name: Agent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7964036381029888454
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2680331099729364816}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3679780394179150321}
+  - {fileID: 5624759549133304293}
+  m_Father: {fileID: 2989389793686267029}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1981948398575106102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2680331099729364816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa428500f229020458adebb34fbbd888, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ProjectNahual.FSM::ProjectNahual.FSM.HunterBehaviour
+  agent: {fileID: 7010400152097787800}
+  animator: {fileID: 4945037258662171833}
+  patrolArea: {fileID: 8309623589684321279}
+  animationContext: {fileID: 2122141783516227099}
+  homingAxe: {fileID: 5237999859070471965, guid: f4aec01a51f0c0f4bbef8f8b17e8af29, type: 3}
+  handBone: {fileID: 5624759549133304293}
+--- !u!136 &1547796284585033517
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2680331099729364816}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2.1900206
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.95394707, z: 0}
+--- !u!195 &7010400152097787800
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2680331099729364816}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 250
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!1 &5140025086621349531
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1854127179460713744}
+  - component: {fileID: 8309623589684321279}
+  m_Layer: 0
+  m_Name: Patrol Area
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1854127179460713744
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5140025086621349531}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.48, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2989389793686267029}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &8309623589684321279
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5140025086621349531}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 10, y: 1, z: 10}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &5935149389872430451
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5624759549133304293}
+  m_Layer: 7
+  m_Name: Axe Ref Pos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5624759549133304293
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5935149389872430451}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.43881726, y: -0, z: -0, w: 0.8985764}
+  m_LocalPosition: {x: 0.24800014, y: 2.129, z: 0.422}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7964036381029888454}
+  m_LocalEulerAnglesHint: {x: 52.057, y: 0, z: 0}
+--- !u!1 &7793990194554003559
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2989389793686267029}
+  - component: {fileID: 7589703089353230378}
+  m_Layer: 0
+  m_Name: Huntress
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2989389793686267029
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7793990194554003559}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -9.593786, y: -0.464, z: -1.414489}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7964036381029888454}
+  - {fileID: 1854127179460713744}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7589703089353230378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7793990194554003559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f90449d459a5c741839d066fde2b67a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ProjectNahual.Weapons::ProjectNahual.Weapons.Enemy
+  hunterBehaviour: {fileID: 1981948398575106102}
+  knockbackIntensity: 2
+  health: 100
+--- !u!1001 &2907678031221977669
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7964036381029888454}
+    m_Modifications:
+    - target: {fileID: 1153134443599227150, guid: efd222595df26344083769819e25431e, type: 3}
+      propertyPath: m_Name
+      value: Huntress PREF
+      objectReference: {fileID: 0}
+    - target: {fileID: 1966684380320478132, guid: efd222595df26344083769819e25431e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.12880927
+      objectReference: {fileID: 0}
+    - target: {fileID: 1966684380320478132, guid: efd222595df26344083769819e25431e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1966684380320478132, guid: efd222595df26344083769819e25431e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.005120784
+      objectReference: {fileID: 0}
+    - target: {fileID: 1966684380320478132, guid: efd222595df26344083769819e25431e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1966684380320478132, guid: efd222595df26344083769819e25431e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1966684380320478132, guid: efd222595df26344083769819e25431e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1966684380320478132, guid: efd222595df26344083769819e25431e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1966684380320478132, guid: efd222595df26344083769819e25431e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1966684380320478132, guid: efd222595df26344083769819e25431e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1966684380320478132, guid: efd222595df26344083769819e25431e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7852704264698734332, guid: efd222595df26344083769819e25431e, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: a0c2efeeffc12284cae6ceeae6224e09, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1153134443599227150, guid: efd222595df26344083769819e25431e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2122141783516227099}
+  m_SourcePrefab: {fileID: 100100000, guid: efd222595df26344083769819e25431e, type: 3}
+--- !u!4 &3679780394179150321 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1966684380320478132, guid: efd222595df26344083769819e25431e, type: 3}
+  m_PrefabInstance: {fileID: 2907678031221977669}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4060809154536577867 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1153134443599227150, guid: efd222595df26344083769819e25431e, type: 3}
+  m_PrefabInstance: {fileID: 2907678031221977669}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2122141783516227099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4060809154536577867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ae6adacb6f575c45a4b17edf0c9f43c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ProjectNahual.Utils::AnimationContext
+--- !u!95 &4945037258662171833 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7852704264698734332, guid: efd222595df26344083769819e25431e, type: 3}
+  m_PrefabInstance: {fileID: 2907678031221977669}
+  m_PrefabAsset: {fileID: 0}
