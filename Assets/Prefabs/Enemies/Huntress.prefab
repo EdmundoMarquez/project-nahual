@@ -229,8 +229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f90449d459a5c741839d066fde2b67a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: ProjectNahual.Weapons::ProjectNahual.Weapons.Enemy
-  hunterBehaviour: {fileID: 1981948398575106102}
-  knockbackIntensity: 2
+  behaviour: {fileID: 1981948398575106102}
   health: 100
 --- !u!1001 &2907678031221977669
 PrefabInstance:
