@@ -42,6 +42,7 @@ namespace ProjectNahual.Enemies
             // Set initial state
             stateMachine.SetInitialState("Patrol");
             Debug.Log($"Initial state: {stateMachine.CurrentStateName}");
+            canTick = true;
 
             // Invoke(nameof(TransitionToChase), 2f);
             // Invoke(nameof(TransitionToAttack), 4f);
@@ -51,7 +52,7 @@ namespace ProjectNahual.Enemies
 
         public void AttackAnimationEvent()
         {
-            Debug.Log("Should spawn axe");
+            // Debug.Log("Should spawn axe");
             Axe axe = Instantiate(homingAxe, handBone.position, Quaternion.identity);
             axe.transform.LookAt(playerTransform);
             axe.Init(playerTransform);

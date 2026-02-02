@@ -28,7 +28,6 @@ namespace ProjectNahual.Weapons
             List<IDamageable> targetsInsideRange = new List<IDamageable>();
             RaycastHit[] results = new RaycastHit[8];
             int count = Physics.SphereCastNonAlloc(playerCamera.position, impactRadius / 2, playerCamera.TransformDirection(Vector3.forward), results, damageableLayerMask);
-            Debug.Log(count);
 
             if(count < 1) return targetsInsideRange;
             for (int i = 0; i < count; i++)

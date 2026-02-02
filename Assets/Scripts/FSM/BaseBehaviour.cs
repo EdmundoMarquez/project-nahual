@@ -9,13 +9,25 @@ namespace ProjectNahual.FSM
         [SerializeField] protected Animator animator;
         [SerializeField] protected Collider patrolArea;
         protected StateMachine<IState> stateMachine;
-        public virtual void Init() {}
+        protected bool canTick = false;
+        public virtual void Init() => canTick = true;
 
         public virtual void Tick()
         {
+            if(!canTick) return;
             // Update the current state
             stateMachine.Update();
             animator.SetFloat("Speed", agent.velocity.magnitude);
+        }
+
+        public virtual void Resume()
+        {
+            agent.enabled = true;
+        }
+
+        public virtual void Stop()
+        {
+            agent.enabled = false;
         }
     }
 }

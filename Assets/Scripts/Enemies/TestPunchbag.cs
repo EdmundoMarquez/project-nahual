@@ -5,9 +5,8 @@ using ProjectNahual.FSM;
 
 namespace ProjectNahual.Enemies
 {
-    public class Enemy : MonoBehaviour, IDamageable
+    public class TestPunchbag : MonoBehaviour, IDamageable
     {
-        [SerializeField] private BaseBehaviour behaviour;
         [SerializeField] private Rigidbody rigid;
         [SerializeField] private float knockbackIntensity = 5f;
         public int health = 100;
@@ -15,30 +14,14 @@ namespace ProjectNahual.Enemies
         private void Awake() { Registry<IDamageable>.TryAdd(this); }
         private void OnDestroy() { Registry<IDamageable>.Remove(this); }
 
-        private void Start()
-        {
-            behaviour.Init();
-        }
-
-        private void Update()
-        {
-            behaviour.Tick();
-
-            // if(rigid.linearVelocity.magnitude <= 0.1f && !rigid.isKinematic)
-            // {
-            //     rigid.isKinematic = true;
-            //     behaviour.Resume();
-            // }
-        }
-
         public void TakeDamage(int amount)
         {
             health -= amount;
 
             //Apply knockback force
-            // behaviour.Stop();
-            // rigid.isKinematic = false;
-            // rigid.AddForce(transform.up * knockbackIntensity, ForceMode.Impulse);
+            rigid.isKinematic = false;
+            rigid.AddForce(transform.up * knockbackIntensity, ForceMode.Impulse);
+            // rigid.isKinematic = true;
             
             Debug.Log("Enemy health: " + health);
 
