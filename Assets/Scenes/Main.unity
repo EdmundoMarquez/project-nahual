@@ -728,9 +728,9 @@ MonoBehaviour:
   cellOffset: 2
   borderWidth: 4
   borderPrefabs:
-  - {fileID: 245886947641792243, guid: 4ed551f3a2223a14b9e07090ddca1d88, type: 3}
-  - {fileID: 2571874788002767967, guid: 1440f97b57aa7ff4dab0b5e6989874d1, type: 3}
-  - {fileID: 2571874788002767967, guid: 1440f97b57aa7ff4dab0b5e6989874d1, type: 3}
+  - {fileID: 5970029902240865243, guid: 0d1b459a9b9389145b5851814cdd9426, type: 3}
+  - {fileID: 6719866760927779252, guid: cd3aaba8aeb74dd45ad953c302d7ebd0, type: 3}
+  - {fileID: 6931840480431821782, guid: 131bdf7f5ad75c94eb51abc94afdc000, type: 3}
   environmentPrefabs:
   - {fileID: 3712437929094494144, guid: 27de56304fce25c468928b8f2e88e2c9, type: 3}
   - {fileID: 103693979566348369, guid: 5d459e0eef7eb9d449c1ae4b841dc114, type: 3}
