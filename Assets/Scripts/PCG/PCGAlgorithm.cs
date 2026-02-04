@@ -46,9 +46,10 @@ namespace ProjectNahual.PCG
                     cell.transform.SetParent(gridParent);
 
                     //Exclude column used to spawn level exit
-                    if(excludeColumn == x && z <= borderWidth)
+                    if(excludeColumn == x && z <= borderWidth + 1)
                     {
                         positionsForLevelExit.Add(position);
+                        cellPositions.RemoveAt(cellPositions.Count - 1);
                         continue;
                     }
 
@@ -73,7 +74,9 @@ namespace ProjectNahual.PCG
 
         public void ScatterAssetLibrary(PCGAssetLibrary assetLibary, int population = 20)
         {
-            for (int i = 0; i < population; i++)
+            int totalInstances = cellPositions.Count * population / 100;
+
+            for (int i = 0; i < totalInstances; i++)
             {
                 ScatterObject(assetLibary.GetRandomAsset());
             }
@@ -104,8 +107,15 @@ namespace ProjectNahual.PCG
                 Debug.LogError("No positions to spawn exit!");
                 return;
             }
-            Vector3 position = positionsForLevelExit[positionsForLevelExit.Count - 1];
+            Vector3 position = positionsForLevelExit[positionsForLevelExit.Count - 2];
             SpawnObject(levelExit, position);
+        }
+
+        public void PlacePlayerInCell(GameObject player)
+        {
+            Vector3 position = ObjectSpawnLocation();
+            position.y += 1f;
+            player.transform.SetPositionAndRotation(position, RandomizeRotation());
         }
 
         private Quaternion RandomizeRotation()
@@ -116,6 +126,7 @@ namespace ProjectNahual.PCG
                 0
             );
         }
+
 
         public Vector3 ObjectSpawnLocation()
         {

@@ -9,6 +9,7 @@ namespace ProjectNahual.PCG
     {
         [SerializeField] private GameObject gridCellPrefab;
         [SerializeField] private GameObject groundPlane;
+        [SerializeField] private GameObject player;
         [Header("Grid Settings")]
         [SerializeField] [Range(0.1f,1)] private float groundScaleFactor = 0.5f;
         [SerializeField] private Vector2Int worldSize;
@@ -17,7 +18,9 @@ namespace ProjectNahual.PCG
         [Header("Asset Libraries")]
         [SerializeField] private GameObject[] borderPrefabs;
         [SerializeField] private GameObject[] environmentPrefabs;
+        [SerializeField] [Range(20, 50)] private int environmentPopulation = 20;
         [SerializeField] private GameObject[] enemyPrefabs;
+        [SerializeField] [Range(5, 50)] private int enemyPopulation = 20;
         [SerializeField] private GameObject levelExitPrefab;
         private PCGAlgorithm algorithm;
         private NavMeshSurface navMeshSurface;
@@ -54,11 +57,13 @@ namespace ProjectNahual.PCG
                 (worldSize.y * cellOffset) / 2);
             
             PCGAssetLibrary environmentLibrary = new PCGAssetLibrary(environmentPrefabs);
-            algorithm.ScatterAssetLibrary(environmentLibrary, 50);
+            algorithm.ScatterAssetLibrary(environmentLibrary, environmentPopulation);
 
-            // navMeshSurface.BuildNavMesh();
-            // PCGAssetLibrary enemyLibrary = new PCGAssetLibrary(enemyPrefabs);
-            // algorithm.ScatterAssetLibrary(enemyLibrary, 20);
+            navMeshSurface.BuildNavMesh();
+            PCGAssetLibrary enemyLibrary = new PCGAssetLibrary(enemyPrefabs);
+            algorithm.ScatterAssetLibrary(enemyLibrary, enemyPopulation);
+
+            algorithm.PlacePlayerInCell(player);
         }
     }
 }
