@@ -51,7 +51,7 @@ MonoBehaviour:
   animator: {fileID: 4945037258662171833}
   patrolArea: {fileID: 8309623589684321279}
   animationContext: {fileID: 2122141783516227099}
-  homingAxe: {fileID: 5237999859070471965, guid: f4aec01a51f0c0f4bbef8f8b17e8af29, type: 3}
+  homingAxe: {fileID: 4902752684465761106, guid: c9be19e5a2753834d8b673ca2c751577, type: 3}
   handBone: {fileID: 5624759549133304293}
 --- !u!195 &7010400152097787800
 NavMeshAgent:
