@@ -56,6 +56,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stones
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1c9782a0987001c48be810efc9ff6ae5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 1587369630319012955, guid: 1c9782a0987001c48be810efc9ff6ae5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 5533986331922188120, guid: 1c9782a0987001c48be810efc9ff6ae5, type: 3}
