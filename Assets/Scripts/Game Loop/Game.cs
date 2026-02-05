@@ -1,4 +1,3 @@
-using log4net.Core;
 using ProjectNahual.GameLoop;
 using ProjectNahual.PCG;
 using UnityEngine;
