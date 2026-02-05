@@ -1,21 +1,58 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.Pool;
 
 namespace ProjectNahual.PCG
 {
-    public class PCGAssetLibrary
+    public class PCGAssetLibrary : MonoBehaviour
     {
-        private List<GameObject> assetLibrary = new List<GameObject>();
-
-        public PCGAssetLibrary(GameObject[] assets)
+        [SerializeField] private PCGAsset pcgAssetPrefab = null;
+        private IObjectPool<PCGAsset> objectPool;
+        [SerializeField] private bool collectionCheck = true;
+        [SerializeField] private int defaultCapacity = 20;
+        [SerializeField] private int maxSize = 100;
+        private List<PCGAsset> assetInstances = new List<PCGAsset>();
+        
+        private void Awake()
         {
-            for (int i = 0; i < assets.Length; i++)
-                assetLibrary.Add(assets[i]);
+            objectPool = new ObjectPool<PCGAsset>(CreatePCGAsset, OnGetFromPool, OnReleaseToPool, OnDestroyPooledObject,
+            collectionCheck, defaultCapacity, maxSize);
         }
 
-        public GameObject GetRandomAsset()
+        public PCGAsset GetAsset() => objectPool.Get();
+
+        private PCGAsset CreatePCGAsset()
         {
-            return assetLibrary[Random.Range(0, assetLibrary.Count)];
+            PCGAsset asset = Instantiate(pcgAssetPrefab);
+            asset.ObjectPool = objectPool;
+            return asset;
+        }
+
+        private void OnGetFromPool(PCGAsset pooledAsset)
+        {
+            pooledAsset.gameObject.SetActive(true);
+        }
+
+        private void OnReleaseToPool(PCGAsset pooledAsset)
+        {
+            pooledAsset.gameObject.SetActive(false);
+        }
+
+        private void OnDestroyPooledObject(PCGAsset pooledAsset)
+        {
+            Destroy(pooledAsset.gameObject);
+        }
+
+        public void OnAssetPlaced(PCGAsset asset)
+        {
+            assetInstances.Add(asset);
+        }
+
+        public void ReleasePool()
+        {
+            foreach (var instance in assetInstances)
+                instance.Deactivate();
+            assetInstances.Clear();
         }
     }
 }

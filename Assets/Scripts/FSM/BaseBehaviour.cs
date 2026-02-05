@@ -29,6 +29,13 @@ namespace ProjectNahual.FSM
         {
             agent.enabled = false;
         }
+
+        public virtual void Reset() {}
+
+        public virtual void SetOrigin(Vector3 origin)
+        {
+            agent.Warp(origin);
+        }
     }
 }
 

@@ -2,6 +2,7 @@ using UnityEngine;
 using ProjectNahual.Utils;
 using ProjectNahual.Weapons;
 using ProjectNahual.FSM;
+using UnityEngine.AI;
 
 namespace ProjectNahual.Enemies
 {
@@ -18,6 +19,16 @@ namespace ProjectNahual.Enemies
         private void Start()
         {
             behaviour.Init();
+        }
+
+        private void OnEnable()
+        {
+            behaviour.Reset();
+        }
+
+        private void OnDisable()
+        {
+            behaviour.Stop();
         }
 
         private void Update()
@@ -44,7 +55,8 @@ namespace ProjectNahual.Enemies
 
             if(health <= 0)
             {
-                DestroyImmediate(gameObject);
+                behaviour.Stop();
+                // Destroy(gameObject);
             }
         }
     }

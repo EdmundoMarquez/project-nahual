@@ -28,7 +28,7 @@ namespace ProjectNahual.PCG
             }
         }
 
-        public void GenerateWithBorder(GameObject cellPrefab, PCGAssetLibrary borderAssetLibrary, int borderWidth = 1, Transform parent = null, int worldSizeX = 10, int worldSizeZ = 10, float gridOffset = 3)
+        public void GenerateWithBorder(PCGAssetLibrary cellLibrary, PCGAssetLibrary borderAssetLibrary, int borderWidth = 1, Transform parent = null, int worldSizeX = 10, int worldSizeZ = 10, float gridOffset = 3)
         {
             gridParent = parent;
 
@@ -41,9 +41,11 @@ namespace ProjectNahual.PCG
                     Vector3 position = new Vector3(x * gridOffset,
                     0 //GenerateNoise(x, z, 8) * noiseHeight
                     , z * gridOffset);
-                    GameObject cell = Object.Instantiate(cellPrefab, position, Quaternion.identity);
+                    PCGAsset cell =  cellLibrary.GetAsset();
+                    cell.transform.position = position;
                     cellPositions.Add(cell.transform.position);
                     cell.transform.SetParent(gridParent);
+                    cellLibrary.OnAssetPlaced(cell);
 
                     //Exclude column used to spawn level exit
                     if(excludeColumn == x && z <= borderWidth + 1)
@@ -56,10 +58,12 @@ namespace ProjectNahual.PCG
                     //Handle border logic
                     if(x <= borderWidth || z <= borderWidth || x >= worldSizeX - borderWidth || z >= worldSizeZ - borderWidth)
                     {
-                        GameObject randomizedBorder = borderAssetLibrary.GetRandomAsset();
+                        PCGAsset border = borderAssetLibrary.GetAsset();
                         Vector3 borderPosition = cellPositions[cellPositions.Count - 1];
-                        SpawnObject(randomizedBorder, borderPosition, true);
+                        border.transform.SetPositionAndRotation(borderPosition, RandomizeRotation());
+                        border.transform.SetParent(gridParent);
                         cellPositions.RemoveAt(cellPositions.Count - 1);
+                        borderAssetLibrary.OnAssetPlaced(border);
                     }
                 }
             }
@@ -67,18 +71,19 @@ namespace ProjectNahual.PCG
 
         public void SpawnObject(GameObject objectToSpawn, Vector3 position, bool randomizeRotation = false)
         {
-            GameObject toPlaceObject = Object.Instantiate(objectToSpawn,
-                position,
-                randomizeRotation ? RandomizeRotation() : Quaternion.identity);
+            objectToSpawn.transform.SetPositionAndRotation(position, randomizeRotation ? RandomizeRotation() : Quaternion.identity);
         }
 
-        public void ScatterAssetLibrary(PCGAssetLibrary assetLibary, int population = 20)
+        public void ScatterAssetLibrary(PCGAssetLibrary assetLibary, int population = 20, Transform parent = null)
         {
             int totalInstances = cellPositions.Count * population / 100;
 
             for (int i = 0; i < totalInstances; i++)
             {
-                ScatterObject(assetLibary.GetRandomAsset());
+                PCGAsset objectToScatter = assetLibary.GetAsset();
+                ScatterObject(objectToScatter.gameObject);
+                objectToScatter.transform.SetParent(parent);
+                assetLibary.OnAssetPlaced(objectToScatter);
             }
         }
 
@@ -92,11 +97,7 @@ namespace ProjectNahual.PCG
                     return;
                 }
 
-                GameObject toPlaceObject = Object.Instantiate(objectToSpawn,
-                    ObjectSpawnLocation(),
-                    Quaternion.identity);
-
-                toPlaceObject.transform.rotation = RandomizeRotation();
+                objectToSpawn.transform.SetPositionAndRotation(ObjectSpawnLocation(), RandomizeRotation());
             }
         }
 
@@ -140,7 +141,6 @@ namespace ProjectNahual.PCG
             cellPositions.RemoveAt(rndIndex);
             return newPos;
         }
-
 
         public float GenerateNoise(int x, int z, float detailScale)
         {

@@ -57,5 +57,13 @@ namespace ProjectNahual.Enemies
             axe.transform.LookAt(playerTransform);
             axe.Init(playerTransform);
         }
+
+        public override void Reset()
+        {
+            // base.Reset()
+            agent.enabled = true;
+            stateMachine.Clear();
+            Init();
+        }
     }
 }
