@@ -1,0 +1,18 @@
+{
+    "name": "ProjectNahual.PCG",
+    "rootNamespace": "",
+    "references": [
+        "GUID:8c4dd21966739024fbd72155091d199e",
+        "GUID:cd7e14c6d608d094284ebb1bf4b0b07b",
+        "GUID:f0d4f82b738d8ec47be9980451d0887e"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -154,5 +154,7 @@ namespace ProjectNahual.FPCharacter
         {
             isSprinting = playerInput.SprintHold;
         }
+
+        public void Stop() => canTick = false;
     }
 }

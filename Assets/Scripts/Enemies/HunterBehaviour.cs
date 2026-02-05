@@ -44,6 +44,8 @@ namespace ProjectNahual.Enemies
             Debug.Log($"Initial state: {stateMachine.CurrentStateName}");
             canTick = true;
 
+            agent.destination = transform.position;
+
             // Invoke(nameof(TransitionToChase), 2f);
             // Invoke(nameof(TransitionToAttack), 4f);
             // Invoke(nameof(RevertToPreviousState), 6f);
@@ -56,6 +58,14 @@ namespace ProjectNahual.Enemies
             Axe axe = Instantiate(homingAxe, handBone.position, Quaternion.identity);
             axe.transform.LookAt(playerTransform);
             axe.Init(playerTransform);
+        }
+
+        public override void Reset()
+        {
+            // base.Reset()
+            agent.enabled = true;
+            stateMachine.Clear();
+            Init();
         }
     }
 }

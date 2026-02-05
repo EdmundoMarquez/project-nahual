@@ -1,6 +1,8 @@
 ﻿<Solution>
   <Project Path="ProjectNahual.FPCharacter.csproj" />
   <Project Path="ProjectNahual.Weapons.csproj" />
+  <Project Path="ProjectNahual.PCG.Tests.csproj" />
+  <Project Path="ProjectNahual.PCG.csproj" />
   <Project Path="ProjectNahual.GameLoop.csproj" />
   <Project Path="ProjectNahual.FSM.csproj" />
   <Project Path="Tests.csproj" />

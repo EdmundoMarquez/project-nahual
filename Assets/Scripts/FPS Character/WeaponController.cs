@@ -27,5 +27,7 @@ namespace ProjectNahual.FPCharacter
         {
             _weapon.Fire();
         }
+
+        public void Stop() => _playerInput.ShootPressed -= OnFire;
     }
 }

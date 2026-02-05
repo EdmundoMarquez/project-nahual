@@ -73,7 +73,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Whooshy_Whoosh:
-        m_Texture: {fileID: 2800000, guid: ce63c5cf898a584468b1fb2002c72ce7, type: 3}
+        m_Texture: {fileID: 2800000, guid: e13a717e0f49bb240b70ebf58d4cfeb1, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
