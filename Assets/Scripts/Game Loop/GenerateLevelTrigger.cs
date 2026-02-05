@@ -6,7 +6,7 @@ public class GenerateLevelTrigger : MonoBehaviour
     {
         if(collider.CompareTag("Player"))
         {
-            Game.Instance.GenerateLevel();
+            Game.Instance.OnFinishLevel();
         }
     }
 }

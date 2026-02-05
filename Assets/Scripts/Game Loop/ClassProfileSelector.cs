@@ -3,6 +3,7 @@ using ProjectNahual.FPCharacter;
 using ProjectNahual.Weapons;
 using ProjectNahual.Utils;
 using System.Linq;
+using System.Collections;
 
 namespace ProjectNahual.GameLoop
 {
@@ -12,9 +13,16 @@ namespace ProjectNahual.GameLoop
         [SerializeField] private FirstPersonCharacter characterInstaller;
         [SerializeField] private ClassSelectionMenu view;
 
-        private void Start() => OnActivateSelector();
+        // private void Start() => ActivateSelector();
+        private Coroutine SelectorCoroutine;
 
-        public void OnActivateSelector()
+        public void OnFinishLevel()
+        {
+            characterInstaller.Reset();
+            ActivateSelector();
+        }
+
+        public void ActivateSelector()
         {
             foreach(var profile in profiles)
             {
@@ -23,6 +31,19 @@ namespace ProjectNahual.GameLoop
 
             view.ToggleVisibility(true);
             CursorHandler.FreeCursor();
+        }
+
+        public void ActivateSelectorByTimer(Coroutine waitCoroutine)
+        {
+            if(SelectorCoroutine != null)
+                StopCoroutine(SelectorCoroutine);
+            SelectorCoroutine = StartCoroutine(ActivateSelectorTimer(waitCoroutine));
+        }
+
+        IEnumerator ActivateSelectorTimer(Coroutine waitCoroutine)
+        {
+            yield return waitCoroutine;
+            ActivateSelector();
         }
 
 
@@ -38,8 +59,6 @@ namespace ProjectNahual.GameLoop
             profile.weaponBehaviour.gameObject.SetActive(true);
             characterInstaller.Init(profile.weaponBehaviour);
             view.ToggleVisibility(false);
-
-            
         }
 
     }

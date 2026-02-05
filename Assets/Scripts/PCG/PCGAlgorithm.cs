@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
+using ProjectNahual.FPCharacter;
+using ProjectNahual.Utils;
 
 namespace ProjectNahual.PCG
 {
@@ -8,7 +10,10 @@ namespace ProjectNahual.PCG
     {
         private Transform gridParent;
         private List<Vector3> cellPositions = new List<Vector3>();
+        private List<Vector3> positionsForLevelEntrance = new List<Vector3>();
         private List<Vector3> positionsForLevelExit = new List<Vector3>();
+        private IPlayerCharacter playerCharacter;
+        public PCGAlgorithm() => playerCharacter = Registry<IPlayerCharacter>.GetFirst();
 
         public void Generate(GameObject cellPrefab, Transform parent = null, int worldSizeX = 10, int worldSizeZ = 10, float gridOffset = 3)
         {
@@ -32,7 +37,8 @@ namespace ProjectNahual.PCG
         {
             gridParent = parent;
 
-            int excludeColumn = Random.Range((worldSizeX / 2) + borderWidth, (worldSizeX /2) - borderWidth);
+            int entranceExcludeColumn = Random.Range(borderWidth, worldSizeX - borderWidth - 1);
+            int exitExcludeColumn = Random.Range(borderWidth, worldSizeX - borderWidth - 1);
 
             for (int x = 0; x < worldSizeX; x++)
             {
@@ -41,14 +47,23 @@ namespace ProjectNahual.PCG
                     Vector3 position = new Vector3(x * gridOffset,
                     0 //GenerateNoise(x, z, 8) * noiseHeight
                     , z * gridOffset);
-                    PCGAsset cell =  cellLibrary.GetAsset();
+                    PCGAsset cell = cellLibrary.GetAsset();
                     cell.transform.position = position;
                     cellPositions.Add(cell.transform.position);
                     cell.transform.SetParent(gridParent);
                     cellLibrary.OnAssetPlaced(cell);
 
+
+                    //Exclude column used to spawn level entrance
+                    if (entranceExcludeColumn == z && x <= borderWidth + 1)
+                    {
+                        positionsForLevelEntrance.Add(position);
+                        cellPositions.RemoveAt(cellPositions.Count - 1);
+                        continue;
+                    }
+
                     //Exclude column used to spawn level exit
-                    if(excludeColumn == x && z <= borderWidth + 1)
+                    if (exitExcludeColumn == x && z <= borderWidth + 1)
                     {
                         positionsForLevelExit.Add(position);
                         cellPositions.RemoveAt(cellPositions.Count - 1);
@@ -56,7 +71,7 @@ namespace ProjectNahual.PCG
                     }
 
                     //Handle border logic
-                    if(x <= borderWidth || z <= borderWidth || x >= worldSizeX - borderWidth || z >= worldSizeZ - borderWidth)
+                    if (x <= borderWidth || z <= borderWidth || x >= worldSizeX - borderWidth || z >= worldSizeZ - borderWidth)
                     {
                         PCGAsset border = borderAssetLibrary.GetAsset();
                         Vector3 borderPosition = cellPositions[cellPositions.Count - 1];
@@ -71,52 +86,50 @@ namespace ProjectNahual.PCG
 
         public void SpawnObject(GameObject objectToSpawn, Vector3 position, bool randomizeRotation = false)
         {
-            objectToSpawn.transform.SetPositionAndRotation(position, randomizeRotation ? RandomizeRotation() : Quaternion.identity);
+            objectToSpawn.transform.SetPositionAndRotation(position, randomizeRotation ? RandomizeRotation() : objectToSpawn.transform.rotation);
         }
 
-        public void ScatterAssetLibrary(PCGAssetLibrary assetLibary, int population = 20, Transform parent = null)
+        public void ScatterAssetLibrary(PCGAssetLibrary assetLibary, int population = 20, Transform parent = null, bool avoidPlayer = false, float avoidingRange = 10f)
         {
             int totalInstances = cellPositions.Count * population / 100;
 
             for (int i = 0; i < totalInstances; i++)
             {
                 PCGAsset objectToScatter = assetLibary.GetAsset();
-                ScatterObject(objectToScatter.gameObject);
+                ScatterObject(objectToScatter.gameObject, 1, avoidPlayer, avoidingRange);
                 objectToScatter.transform.SetParent(parent);
                 assetLibary.OnAssetPlaced(objectToScatter);
             }
         }
 
-        public void ScatterObject(GameObject objectToSpawn, int population = 1)
+        public void ScatterObject(GameObject objectToSpawn, int population = 1, bool avoidPlayer = false, float avoidingRange = 10f)
         {
             for (int i = 0; i < population; i++)
             {
-                if(cellPositions.Count < 1)
+                if (cellPositions.Count < 1)
                 {
                     Debug.Log("Too crowded for object generation. Make a bigger grid!");
                     return;
                 }
 
-                objectToSpawn.transform.SetPositionAndRotation(ObjectSpawnLocation(), RandomizeRotation());
+                objectToSpawn.transform.SetPositionAndRotation(ObjectSpawnLocation(avoidPlayer, avoidingRange), RandomizeRotation());
             }
         }
 
-        public void SpawnLevelExit(GameObject levelExit)
+        //Spawns the level entrance at the last position available
+        public void SpawnLevelEntrance(GameObject levelEntrance) => SpawnLevelGateway(levelEntrance, positionsForLevelEntrance);
+        //Spawns the level exit at the second last position available
+        public void SpawnLevelExit(GameObject levelExit) => SpawnLevelGateway(levelExit, positionsForLevelExit, -2);
+
+        private void SpawnLevelGateway(GameObject gateway, List<Vector3> positionsCollection, int positionOffset = -1)
         {
-            if(positionsForLevelExit.Count < 1)
+            if (positionsCollection.Count < 1)
             {
-                Debug.LogError("No positions to spawn exit!");
+                Debug.LogError("No positions to spawn gateway!");
                 return;
             }
-            Vector3 position = positionsForLevelExit[positionsForLevelExit.Count - 2];
-            SpawnObject(levelExit, position);
-        }
-
-        public void PlacePlayerInCell(GameObject player)
-        {
-            Vector3 position = ObjectSpawnLocation();
-            position.y += 1f;
-            player.transform.SetPositionAndRotation(position, RandomizeRotation());
+            Vector3 position = positionsCollection[positionsCollection.Count + positionOffset]; //If we use 2 we get rid of infront objects
+            SpawnObject(gateway, position);
         }
 
         private Quaternion RandomizeRotation()
@@ -128,8 +141,7 @@ namespace ProjectNahual.PCG
             );
         }
 
-
-        public Vector3 ObjectSpawnLocation()
+        public Vector3 ObjectSpawnLocation(bool avoidPlayerLocation = false, float avoidingRange = 10f)
         {
             int rndIndex = Random.Range(0, cellPositions.Count);
 
@@ -138,6 +150,28 @@ namespace ProjectNahual.PCG
                 cellPositions[rndIndex].y + 0.5f,
                 cellPositions[rndIndex].z
             );
+
+            if (avoidPlayerLocation)
+            {
+                int retries = 20;
+                for (int i = 0; i < retries; i++)
+                {
+                    float distance = Vector3.Distance(newPos, playerCharacter.Position);
+                    Debug.Log("Reposition PCG Asset. Try #" + i + ": " + distance + " away from player.");
+                    if (distance < avoidingRange)
+                    {
+                        rndIndex = Random.Range(0, cellPositions.Count);
+                        newPos = new Vector3(
+                            cellPositions[rndIndex].x,
+                            cellPositions[rndIndex].y + 0.5f,
+                            cellPositions[rndIndex].z
+                            );
+                        continue;
+                    }
+                    break;
+                }
+            }
+
             cellPositions.RemoveAt(rndIndex);
             return newPos;
         }

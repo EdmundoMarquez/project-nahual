@@ -15,6 +15,7 @@ namespace ProjectNahual.Enemies
 
         private void Awake() { Registry<IDamageable>.TryAdd(this); }
         private void OnDestroy() { Registry<IDamageable>.Remove(this); }
+        private bool wasPooled = false;
 
         private void Start()
         {
@@ -23,11 +24,14 @@ namespace ProjectNahual.Enemies
 
         private void OnEnable()
         {
+            if(!wasPooled) return;
             behaviour.Reset();
+            wasPooled = false;
         }
 
         private void OnDisable()
         {
+            wasPooled = true;
             behaviour.Stop();
         }
 

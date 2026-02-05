@@ -1,10 +1,11 @@
 using UnityEngine;
 using ProjectNahual.Input;
 using ProjectNahual.Weapons;
+using ProjectNahual.Utils;
 
 namespace ProjectNahual.FPCharacter
 {
-    public class FirstPersonCharacter : MonoBehaviour
+    public class FirstPersonCharacter : MonoBehaviour, IPlayerCharacter
     {
         [Header("References")]
         [SerializeField] private MovementController movementController;
@@ -13,6 +14,8 @@ namespace ProjectNahual.FPCharacter
         public IWeapon _weapon;
         private IPlayerInput playerInput;
         private bool initialized;
+        public bool Initialized => initialized;
+        public Vector3 Position => transform.position;
 
         private void Awake()
         {
@@ -42,7 +45,10 @@ namespace ProjectNahual.FPCharacter
 
 
             initialized = true;
+            Registry<IPlayerCharacter>.TryAdd(this);
         }
+
+        private void OnDestroy() => Registry<IPlayerCharacter>.Remove(this); 
 
         public void Init(MonoBehaviour weaponBehaviour)
         {
@@ -69,8 +75,11 @@ namespace ProjectNahual.FPCharacter
             cameraController.Tick();
         }
 
-        private void LateUpdate()
+        public void Reset()
         {
+            movementController.Stop();
+            cameraController.Stop();
+            weaponController.Stop();
         }
     }
 }

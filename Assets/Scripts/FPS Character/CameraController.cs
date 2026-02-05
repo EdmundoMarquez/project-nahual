@@ -47,6 +47,6 @@ namespace ProjectNahual.FPCharacter
             playerCamera.transform.localRotation = Quaternion.Euler(verticalRotation, 0, 0);
         }
 
-
+        public void Stop() => canTick = false;
     }
 }

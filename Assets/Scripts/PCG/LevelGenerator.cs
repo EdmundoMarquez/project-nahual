@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Linq;
-using PlasticGui.Diff;
 using Unity.AI.Navigation;
+using UnityEditor.EditorTools;
 using UnityEngine;
 
 namespace ProjectNahual.PCG
@@ -11,26 +11,31 @@ namespace ProjectNahual.PCG
     {
         [SerializeField] private GameObject groundPlane;
         [SerializeField] private GameObject player;
+        [SerializeField] private GameObject levelEntrance;
+        [SerializeField] private GameObject levelExit;
         [Header("Grid Settings")]
+        [Tooltip("Ground scale used to scale ground according to world size")]
         [SerializeField] [Range(0.1f,1)] private float groundScaleFactor = 0.5f;
         [SerializeField] private Vector2Int worldSize;
         [SerializeField] private float cellOffset = 1.1f;
+        [Tooltip("Border width measured in cells")]
         [SerializeField] [Range(1, 4)] private int borderWidth = 1;
         [Header("Asset Libraries")]
         [SerializeField] private PCGAssetLibrary cellAssetLibrary;
         [SerializeField] private PCGAssetLibrary borderAssetLibrary;
         [SerializeField] private PCGAssetLibrary environmentAssetLibrary;
+        [Tooltip("Population represented in percentage")]
         [SerializeField] [Range(20, 50)] private int environmentPopulation = 20;
         [SerializeField] private PCGAssetLibrary enemyAssetLibrary;
+        [Tooltip("Population represented in percentage")]
         [SerializeField] [Range(5, 50)] private int enemyPopulation = 20;
-        [SerializeField] private GameObject levelExit;
         private PCGAlgorithm algorithm;
         private NavMeshSurface navMeshSurface;
         private Coroutine GenerateLevelCoroutine;
         private void Awake() => navMeshSurface = GetComponent<NavMeshSurface>();
 
 
-        public void GenerateLevel()
+        public Coroutine GenerateLevel()
         {
             borderAssetLibrary.ReleasePool();
             environmentAssetLibrary.ReleasePool();
@@ -39,6 +44,8 @@ namespace ProjectNahual.PCG
             if(GenerateLevelCoroutine != null)
                 StopCoroutine(GenerateLevelCoroutine);
             GenerateLevelCoroutine = StartCoroutine(GenerateLevel_Timer(3));
+
+            return GenerateLevelCoroutine;
         }
 
         IEnumerator GenerateLevel_Timer(float waitTime)
@@ -55,8 +62,25 @@ namespace ProjectNahual.PCG
                 worldSize.x, 
                 worldSize.y, 
                 cellOffset);
-            algorithm.SpawnLevelExit(levelExit);
 
+            
+            //Spawn gateways in limits of map
+            algorithm.SpawnLevelEntrance(levelEntrance);
+            algorithm.SpawnLevelExit(levelExit);
+            
+            //Adjust player and floor position
+            SetPlayerPosition();
+            SetGroundPlane();
+
+            //Place environment assets and enemies
+            algorithm.ScatterAssetLibrary(environmentAssetLibrary, environmentPopulation, transform);
+            
+            navMeshSurface.BuildNavMesh();
+            algorithm.ScatterAssetLibrary(enemyAssetLibrary, enemyPopulation, transform, true, 25f);
+        }
+
+        private void SetGroundPlane()
+        {
             groundPlane.transform.localScale = new Vector3(
                 worldSize.x * cellOffset * groundScaleFactor,
                 0,
@@ -67,14 +91,14 @@ namespace ProjectNahual.PCG
                 (worldSize.x * cellOffset) / 2, 
                 groundPlane.transform.position.y, 
                 (worldSize.y * cellOffset) / 2);
+        }
 
-            algorithm.ScatterAssetLibrary(environmentAssetLibrary, environmentPopulation, transform);
-
-            
-            navMeshSurface.BuildNavMesh();
-            algorithm.ScatterAssetLibrary(enemyAssetLibrary, enemyPopulation, transform);
-
-            algorithm.PlacePlayerInCell(player);
+        private void SetPlayerPosition()
+        {
+            Vector3 playerPosition = levelEntrance.transform.position + levelEntrance.transform.forward * 2f;
+            playerPosition.y += 1f;
+            Quaternion playerRotation = Quaternion.LookRotation(levelEntrance.transform.forward);
+            player.transform.SetPositionAndRotation(playerPosition, playerRotation);
         }
     }
 }

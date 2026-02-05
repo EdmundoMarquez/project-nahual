@@ -28,6 +28,7 @@ namespace ProjectNahual.FSM
         public virtual void Stop()
         {
             agent.enabled = false;
+            stateMachine.Clear();
         }
 
         public virtual void Reset() {}

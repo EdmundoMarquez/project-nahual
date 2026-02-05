@@ -493,7 +493,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 350189961}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 22.45, y: 0.5, z: -0.41}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -501,7 +501,7 @@ Transform:
   - {fileID: 1270710606}
   - {fileID: 1949603851}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &350189967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -770,8 +770,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: ProjectNahual.PCG::ProjectNahual.PCG.LevelGenerator
   groundPlane: {fileID: 1206052335}
   player: {fileID: 350189961}
+  levelEntrance: {fileID: 1864018762930130521}
+  levelExit: {fileID: 920118674}
   groundScaleFactor: 0.15
-  worldSize: {x: 30, y: 30}
+  worldSize: {x: 40, y: 40}
   cellOffset: 2
   borderWidth: 4
   cellAssetLibrary: {fileID: 551032073}
@@ -780,7 +782,6 @@ MonoBehaviour:
   environmentPopulation: 30
   enemyAssetLibrary: {fileID: 1491790165}
   enemyPopulation: 5
-  levelExit: {fileID: 920118674}
 --- !u!4 &631116150
 Transform:
   m_ObjectHideFlags: 0
@@ -2385,6 +2386,65 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &564345844872529008 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7490859601152041944, guid: f66fb5b60ab66a646bbf1662f0adf7b6, type: 3}
+  m_PrefabInstance: {fileID: 3912880107766343074}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1864018762930130521
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3435333669491883124}
+  - component: {fileID: 3435333669491883125}
+  m_Layer: 0
+  m_Name: PCG_Entrance
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3435333669491883124
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1864018762930130521}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 2.83483, y: 0, z: 6.9580855}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 564345844872529008}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!65 &3435333669491883125
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1864018762930130521}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.670659, y: 20.111843, z: 4.548527}
+  m_Center: {x: 0, y: 10.007395, z: -7.2257366}
 --- !u!4 &3463353795596970863 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8851014922504715739, guid: e8755b92b6cf51a46acffd3aa4e7df76, type: 3}
@@ -2401,6 +2461,79 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7c3a8b8e5143c147b9b370b4bc725f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: ProjectNahual.Weapons::Melee
+--- !u!1001 &3912880107766343074
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 3435333669491883124}
+    m_Modifications:
+    - target: {fileID: 3142774683032233016, guid: f66fb5b60ab66a646bbf1662f0adf7b6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3142774683032233016, guid: f66fb5b60ab66a646bbf1662f0adf7b6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7490859601152041944, guid: f66fb5b60ab66a646bbf1662f0adf7b6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7490859601152041944, guid: f66fb5b60ab66a646bbf1662f0adf7b6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7490859601152041944, guid: f66fb5b60ab66a646bbf1662f0adf7b6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -5.1480856
+      objectReference: {fileID: 0}
+    - target: {fileID: 7490859601152041944, guid: f66fb5b60ab66a646bbf1662f0adf7b6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7490859601152041944, guid: f66fb5b60ab66a646bbf1662f0adf7b6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7490859601152041944, guid: f66fb5b60ab66a646bbf1662f0adf7b6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7490859601152041944, guid: f66fb5b60ab66a646bbf1662f0adf7b6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7490859601152041944, guid: f66fb5b60ab66a646bbf1662f0adf7b6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7490859601152041944, guid: f66fb5b60ab66a646bbf1662f0adf7b6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7490859601152041944, guid: f66fb5b60ab66a646bbf1662f0adf7b6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7829467998636273562, guid: f66fb5b60ab66a646bbf1662f0adf7b6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7836036521219963234, guid: f66fb5b60ab66a646bbf1662f0adf7b6, type: 3}
+      propertyPath: m_Name
+      value: Gateway
+      objectReference: {fileID: 0}
+    - target: {fileID: 7836036521219963234, guid: f66fb5b60ab66a646bbf1662f0adf7b6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f66fb5b60ab66a646bbf1662f0adf7b6, type: 3}
 --- !u!1001 &4011020214618782667
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2763,6 +2896,7 @@ SceneRoots:
   - {fileID: 1580421402}
   - {fileID: 1491790166}
   - {fileID: 920118673}
+  - {fileID: 3435333669491883124}
   - {fileID: 1206052334}
   - {fileID: 350189966}
   - {fileID: 1483579343}
