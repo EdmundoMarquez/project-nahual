@@ -119,6 +119,59 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &14211814
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 14211816}
+  - component: {fileID: 14211815}
+  m_Layer: 0
+  m_Name: Class Profile Selector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &14211815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 14211814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7d3d074633f1a44d9192ffa823daada, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ProjectNahual.GameLoop::ProjectNahual.GameLoop.ClassProfileSelector
+  profiles:
+  - classId: BRAWLER_ID
+    weaponBehaviour: {fileID: 3463353795596970864}
+  - classId: ENFORCER_ID
+    weaponBehaviour: {fileID: 990810873}
+  - classId: ASSASSIN_ID
+    weaponBehaviour: {fileID: 8502113790899391948}
+  characterInstaller: {fileID: 350189965}
+  view: {fileID: 101203991}
+--- !u!4 &14211816
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 14211814}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.42111, y: -0, z: 5.01119}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &101203985
 GameObject:
   m_ObjectHideFlags: 0
@@ -265,7 +318,7 @@ PrefabInstance:
     - target: {fileID: 475768259684594612, guid: 18d0895c5a1597a4c8d1732695a055ea, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1849034178}
+      objectReference: {fileID: 0}
     - target: {fileID: 475768259684594612, guid: 18d0895c5a1597a4c8d1732695a055ea, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SelectProfile
@@ -1586,7 +1639,7 @@ PrefabInstance:
     - target: {fileID: 475768259684594612, guid: 18d0895c5a1597a4c8d1732695a055ea, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1849034178}
+      objectReference: {fileID: 0}
     - target: {fileID: 475768259684594612, guid: 18d0895c5a1597a4c8d1732695a055ea, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SelectProfile
@@ -2032,74 +2085,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1818184903}
   m_CullTransparentMesh: 1
---- !u!1 &1849034176
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1849034177}
-  - component: {fileID: 1849034179}
-  - component: {fileID: 1849034178}
-  m_Layer: 0
-  m_Name: Game
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1849034177
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1849034176}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 24.91759, y: 2.57435, z: -10.11837}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1849034178
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1849034176}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7d3d074633f1a44d9192ffa823daada, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: ProjectNahual.GameLoop::ProjectNahual.GameLoop.ClassProfileSelector
-  profiles:
-  - classId: BRAWLER_ID
-    weaponBehaviour: {fileID: 3463353795596970864}
-  - classId: ENFORCER_ID
-    weaponBehaviour: {fileID: 990810873}
-  - classId: ASSASSIN_ID
-    weaponBehaviour: {fileID: 8502113790899391948}
-  characterInstaller: {fileID: 350189965}
-  view: {fileID: 101203991}
---- !u!114 &1849034179
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1849034176}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ac82e7584407af41b1f46ce7748f2b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: ProjectNahual.GameLoop::Game
-  classProfileSelector: {fileID: 1849034178}
-  levelGenerator: {fileID: 631116149}
 --- !u!1 &1860487698
 GameObject:
   m_ObjectHideFlags: 0
@@ -2614,7 +2599,7 @@ PrefabInstance:
     - target: {fileID: 475768259684594612, guid: 18d0895c5a1597a4c8d1732695a055ea, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1849034178}
+      objectReference: {fileID: 0}
     - target: {fileID: 475768259684594612, guid: 18d0895c5a1597a4c8d1732695a055ea, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SelectProfile
@@ -2886,10 +2871,10 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 1849034177}
   - {fileID: 410087041}
   - {fileID: 832575519}
   - {fileID: 2125798564}
+  - {fileID: 14211816}
   - {fileID: 631116150}
   - {fileID: 551032074}
   - {fileID: 749401816}

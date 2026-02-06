@@ -48,10 +48,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8297455932208550999, guid: 4358f95a295ba724ab8414c88efbd66b, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
     - target: {fileID: -7916690796125757865, guid: 4358f95a295ba724ab8414c88efbd66b, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -80,18 +76,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gateway
       objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 4358f95a295ba724ab8414c88efbd66b, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
     - target: {fileID: 5062415650208403182, guid: 4358f95a295ba724ab8414c88efbd66b, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 6f25a986eeeb2ca4ebe932a405bcda91, type: 2}
-    - target: {fileID: 5468276560555057163, guid: 4358f95a295ba724ab8414c88efbd66b, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
     - target: {fileID: 6930453145241461172, guid: 4358f95a295ba724ab8414c88efbd66b, type: 3}
       propertyPath: m_LocalScale.x
       value: 30

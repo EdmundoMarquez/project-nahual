@@ -73,7 +73,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Whooshy_Whoosh:
-        m_Texture: {fileID: 2800000, guid: e13a717e0f49bb240b70ebf58d4cfeb1, type: 3}
+        m_Texture: {fileID: 2800000, guid: 85eef928ee90d9148922aa0621024896, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -126,7 +126,7 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Glow_Color: {r: 0.67628944, g: 3.482202, b: 0, a: 0}
+    - _Glow_Color: {r: 2.7051575, g: 13.928807, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

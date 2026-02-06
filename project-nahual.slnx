@@ -1,12 +1,13 @@
 ﻿<Solution>
   <Project Path="ProjectNahual.FPCharacter.csproj" />
   <Project Path="ProjectNahual.Weapons.csproj" />
+  <Project Path="ProjectNahual.Menus.csproj" />
   <Project Path="ProjectNahual.PCG.Tests.csproj" />
+  <Project Path="ProjectNahual.Utils.csproj" />
   <Project Path="ProjectNahual.PCG.csproj" />
   <Project Path="ProjectNahual.GameLoop.csproj" />
   <Project Path="ProjectNahual.FSM.csproj" />
   <Project Path="Tests.csproj" />
   <Project Path="ProjectNahual.Input.csproj" />
   <Project Path="ProjectNahual.Enemies.csproj" />
-  <Project Path="ProjectNahual.Utils.csproj" />
 </Solution>
