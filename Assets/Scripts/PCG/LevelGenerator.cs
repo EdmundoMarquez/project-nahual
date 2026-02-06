@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Linq;
+using ProjectNahual.FPCharacter;
+using ProjectNahual.Utils;
 using Unity.AI.Navigation;
 using UnityEngine;
 
@@ -9,7 +11,6 @@ namespace ProjectNahual.PCG
     public class LevelGenerator : MonoBehaviour
     {
         [SerializeField] private GameObject groundPlane;
-        [SerializeField] private GameObject player;
         [SerializeField] private GameObject levelEntrance;
         [SerializeField] private GameObject levelExit;
         [Header("Grid Settings")]
@@ -31,7 +32,12 @@ namespace ProjectNahual.PCG
         private PCGAlgorithm algorithm;
         private NavMeshSurface navMeshSurface;
         private Coroutine GenerateLevelCoroutine;
-        private void Awake() => navMeshSurface = GetComponent<NavMeshSurface>();
+        
+        private void Awake()
+        {
+            Registry<LevelGenerator>.TryAdd(this);
+            navMeshSurface = GetComponent<NavMeshSurface>();
+        }
 
 
         public Coroutine GenerateLevel()
@@ -42,14 +48,13 @@ namespace ProjectNahual.PCG
 
             if(GenerateLevelCoroutine != null)
                 StopCoroutine(GenerateLevelCoroutine);
-            GenerateLevelCoroutine = StartCoroutine(GenerateLevel_Timer(3));
+            GenerateLevelCoroutine = StartCoroutine(GenerateLevel_Timer(1));
 
             return GenerateLevelCoroutine;
         }
 
         IEnumerator GenerateLevel_Timer(float waitTime)
         {
-            yield return new WaitForSeconds(waitTime);
             algorithm = new PCGAlgorithm();
 
             //Generate borders
@@ -76,6 +81,7 @@ namespace ProjectNahual.PCG
             
             navMeshSurface.BuildNavMesh();
             algorithm.ScatterAssetLibrary(enemyAssetLibrary, enemyPopulation, transform, true, 25f);
+            yield return null;
         }
 
         private void SetGroundPlane()
@@ -94,10 +100,11 @@ namespace ProjectNahual.PCG
 
         private void SetPlayerPosition()
         {
+            IPlayerCharacter player = Registry<IPlayerCharacter>.GetFirst();
             Vector3 playerPosition = levelEntrance.transform.position + levelEntrance.transform.forward * 2f;
             playerPosition.y += 1f;
             Quaternion playerRotation = Quaternion.LookRotation(levelEntrance.transform.forward);
-            player.transform.SetPositionAndRotation(playerPosition, playerRotation);
+            player.SetPosition(playerPosition, playerRotation);
         }
     }
 }

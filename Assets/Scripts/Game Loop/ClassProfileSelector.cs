@@ -10,24 +10,25 @@ namespace ProjectNahual.GameLoop
     public class ClassProfileSelector : MonoBehaviour
     {
         [SerializeField] private ClassProfile[] profiles;
-        [SerializeField] private FirstPersonCharacter characterInstaller;
         [SerializeField] private ClassSelectionMenu view;
+        [SerializeField] private IPlayerCharacter playerCharacter;
 
         // private void Start() => ActivateSelector();
         private Coroutine SelectorCoroutine;
 
         public void OnFinishLevel()
         {
-            characterInstaller.Reset();
+            playerCharacter.Reset();
             ActivateSelector();
         }
 
         public void ActivateSelector()
         {
-            foreach(var profile in profiles)
-            {
-                profile.weaponBehaviour.gameObject.SetActive(false);
-            }
+            // foreach(var profile in profiles)
+            // {
+            //     profile.weaponBehaviour.gameObject.SetActive(false);
+            // }
+            playerCharacter = Registry<IPlayerCharacter>.GetFirst();
 
             view.ToggleVisibility(true);
             CursorHandler.FreeCursor();
@@ -57,7 +58,7 @@ namespace ProjectNahual.GameLoop
             }
 
             profile.weaponBehaviour.gameObject.SetActive(true);
-            characterInstaller.Init(profile.weaponBehaviour);
+            playerCharacter.Init(profile.weaponBehaviour);
             view.ToggleVisibility(false);
         }
 

@@ -33,6 +33,7 @@ namespace ProjectNahual.Menus
                 return;
             }
             SceneLoader.LoadScene(Game.Instance, "LevelGenerator");
+            Game.Instance.StartGame();
         }
 
         private void OnOptionsPressed()

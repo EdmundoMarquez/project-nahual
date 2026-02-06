@@ -68,6 +68,11 @@ namespace ProjectNahual.FPCharacter
             weaponController.Init(playerInput, _weapon);
         }
 
+        public void SetPosition(Vector3 position, Quaternion rotation)
+        {
+            transform.SetPositionAndRotation(position, rotation);
+        }
+
 
         private void Update()
         {

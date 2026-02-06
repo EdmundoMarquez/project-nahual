@@ -20,6 +20,7 @@ namespace ProjectNahual.FPCharacter
 
         private void OnDisable()
         {
+            if(_playerInput == null) return;
             _playerInput.ShootPressed -= OnFire;
         }
 

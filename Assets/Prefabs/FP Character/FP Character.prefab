@@ -439,6 +439,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5232100952907083989, guid: 55d14db0f5c6dc544872e8607a809c96, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6198529299110360317, guid: 55d14db0f5c6dc544872e8607a809c96, type: 3}
       propertyPath: m_Name
       value: Gun
@@ -529,6 +533,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 1.45
       objectReference: {fileID: 0}
+    - target: {fileID: 6975567250568882858, guid: 0c2eab772c19b014aa562f2969ffba50, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -547,6 +555,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 744030848120064051}
     m_Modifications:
+    - target: {fileID: 1658303479132909796, guid: e8755b92b6cf51a46acffd3aa4e7df76, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5626217394672446107, guid: e8755b92b6cf51a46acffd3aa4e7df76, type: 3}
       propertyPath: m_Layer
       value: 6
