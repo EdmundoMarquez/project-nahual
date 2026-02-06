@@ -1,5 +1,6 @@
 using ProjectNahual.GameLoop;
 using ProjectNahual.PCG;
+using ProjectNahual.Utils;
 using UnityEngine;
 
 public class Game : MonoBehaviour
@@ -12,9 +13,9 @@ public class Game : MonoBehaviour
     {
         if(Instance != null) return;
         Instance = this;
-    }
 
-    private void Start() => StartGame(); //TODO: Move this function call to Main Menu
+        DontDestroyOnLoad(gameObject);
+    }
 
     public void StartGame()
     {
