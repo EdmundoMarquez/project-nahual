@@ -11,6 +11,5 @@ namespace ProjectNahual.Input
         event Action CrouchPressed;
         event Action ShootPressed;
         bool SprintHold { get; }
-        bool AimHold { get; }
     }
 }

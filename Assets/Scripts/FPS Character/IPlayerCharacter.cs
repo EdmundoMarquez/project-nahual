@@ -9,5 +9,6 @@ namespace ProjectNahual.FPCharacter
         void Init(MonoBehaviour weaponBehaviour);
         void Reset();
         void SetPosition(Vector3 position, Quaternion rotation);
+        void SetState(bool state);
     }
 }

@@ -9,6 +9,7 @@ namespace ProjectNahual.FPCharacter
     {
         private IWeapon _weapon;
         private IPlayerInput _playerInput;
+        private bool _enabled;
 
         public void Init(IPlayerInput playerInput, IWeapon weapon)
         {
@@ -16,6 +17,7 @@ namespace ProjectNahual.FPCharacter
             _playerInput = playerInput;
 
             _playerInput.ShootPressed += OnFire;
+            _enabled = true;
         }
 
         private void OnDisable()
@@ -26,9 +28,16 @@ namespace ProjectNahual.FPCharacter
 
         private void OnFire()
         {
+            if(!_enabled) return;
             _weapon.Fire();
         }
 
-        public void Stop() => _playerInput.ShootPressed -= OnFire;
+        public void Stop()
+        {
+            _enabled = false;
+            _playerInput.ShootPressed -= OnFire;
+        }
+        
+        public void SetState(bool state) => _enabled = state;
     }
 }

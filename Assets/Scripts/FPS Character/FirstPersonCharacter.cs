@@ -11,6 +11,7 @@ namespace ProjectNahual.FPCharacter
         [SerializeField] private MovementController movementController;
         [SerializeField] private CameraController cameraController;
         [SerializeField] private WeaponController weaponController;
+        [SerializeField] private GameObject pauseScreen;
         public IWeapon _weapon;
         private IPlayerInput playerInput;
         private bool initialized;
@@ -43,12 +44,12 @@ namespace ProjectNahual.FPCharacter
                 return;
             }
 
-
             initialized = true;
             Registry<IPlayerCharacter>.TryAdd(this);
         }
 
         private void OnDestroy() => Registry<IPlayerCharacter>.Remove(this); 
+        private void OnDisable() => SceneLoader.OnSceneLoad -= Reset;
 
         public void Init(MonoBehaviour weaponBehaviour)
         {
@@ -62,10 +63,13 @@ namespace ProjectNahual.FPCharacter
                 return;
             }
 
-            playerInput = GetComponent<StandaloneInputController>();
+            playerInput = Registry<IPlayerInput>.GetFirst();
             movementController.Init(playerInput);
             cameraController.Init(playerInput);
             weaponController.Init(playerInput, _weapon);
+            pauseScreen.SetActive(true);
+
+            SceneLoader.OnSceneLoaded += Reset;
         }
 
         public void SetPosition(Vector3 position, Quaternion rotation)
@@ -85,6 +89,14 @@ namespace ProjectNahual.FPCharacter
             movementController.Stop();
             cameraController.Stop();
             weaponController.Stop();
+            pauseScreen.SetActive(false);
+        }
+        
+        public void SetState(bool state)
+        {
+            movementController.SetState(state);
+            cameraController.SetState(state);
+            weaponController.SetState(state);
         }
     }
 }

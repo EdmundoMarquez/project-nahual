@@ -39,6 +39,7 @@ namespace ProjectNahual.PCG
             navMeshSurface = GetComponent<NavMeshSurface>();
         }
 
+        private void OnDestroy() => Registry<LevelGenerator>.Remove(this);
 
         public Coroutine GenerateLevel()
         {

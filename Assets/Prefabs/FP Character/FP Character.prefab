@@ -267,7 +267,6 @@ GameObject:
   - component: {fileID: 2559962014594668179}
   - component: {fileID: 2337026782619595150}
   - component: {fileID: 2157609777771814794}
-  - component: {fileID: 1805004564198238648}
   - component: {fileID: 7921185613395359136}
   m_Layer: 6
   m_Name: FP Character
@@ -308,6 +307,7 @@ MonoBehaviour:
   movementController: {fileID: 2337026782619595150}
   cameraController: {fileID: 2157609777771814794}
   weaponController: {fileID: 7921185613395359136}
+  pauseScreen: {fileID: 0}
 --- !u!143 &2559962014594668179
 CharacterController:
   m_ObjectHideFlags: 0
@@ -367,18 +367,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lookSensitivity: 2
   lookXLimit: 90
---- !u!114 &1805004564198238648
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8744530402400247972}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d171e0492e1d0854bb117c5efdf3bc50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &7921185613395359136
 MonoBehaviour:
   m_ObjectHideFlags: 0

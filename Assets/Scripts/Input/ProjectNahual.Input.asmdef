@@ -2,7 +2,8 @@
     "name": "ProjectNahual.Input",
     "rootNamespace": "ProjectNahual",
     "references": [
-        "GUID:75469ad4d38634e559750d17036d5f7c"
+        "GUID:75469ad4d38634e559750d17036d5f7c",
+        "GUID:cd7e14c6d608d094284ebb1bf4b0b07b"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

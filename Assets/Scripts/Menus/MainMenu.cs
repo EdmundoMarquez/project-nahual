@@ -23,18 +23,10 @@ namespace ProjectNahual.Menus
             creditsButton.onClick.AddListener(OnCreditsPressed);
             quitButton.onClick.AddListener(OnQuitPressed);
 
+            CursorHandler.FreeCursor();
         }
 
-        private void OnPlayPressed()
-        {
-            if(Game.Instance == null)
-            {
-                Debug.LogWarning("Game should be instanced from the Preload Scene to load scene. Aborting...");
-                return;
-            }
-            SceneLoader.LoadScene(Game.Instance, "LevelGenerator");
-            Game.Instance.StartGame();
-        }
+        private void OnPlayPressed() => Game.Instance.StartGame();
 
         private void OnOptionsPressed()
         {

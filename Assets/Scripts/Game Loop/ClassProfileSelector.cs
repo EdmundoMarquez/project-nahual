@@ -16,6 +16,11 @@ namespace ProjectNahual.GameLoop
         // private void Start() => ActivateSelector();
         private Coroutine SelectorCoroutine;
 
+        private void OnEnable() => Game.GamePaused += OnGamePaused; 
+        private void OnDisable() => Game.GamePaused -= OnGamePaused; 
+
+        private void OnGamePaused(bool state) => playerCharacter.SetState(!state);
+
         public void OnFinishLevel()
         {
             playerCharacter.Reset();

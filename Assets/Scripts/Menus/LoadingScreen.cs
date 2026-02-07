@@ -35,7 +35,7 @@ namespace ProjectNahual.Menus
 
         private void OnSceneLoadUpdate(float progress)
         {
-            // Debug.Log("Update progress: " + progress * 100f + "%");
+            Debug.Log("Update progress: " + progress * 100f + "%");
             progressBar.value = progress;
         }
 
