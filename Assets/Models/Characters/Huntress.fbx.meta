@@ -34,7 +34,7 @@ ModelImporter:
       name: Huntress Rig|Attack
       takeName: Huntress Rig|Attack
       internalID: 8133789884992879276
-      firstFrame: 0
+      firstFrame: 1
       lastFrame: 40
       wrapMode: 0
       orientationOffsetY: 0
@@ -55,7 +55,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.2705294
+      - time: 0.39622027
         functionName: OnAttackAnimationEvent
         data: 
         objectReferenceParameter: {instanceID: 0}

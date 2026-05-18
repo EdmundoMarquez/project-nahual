@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using ProjectNahual.Input;
+using ProjectNahual.Utils;
 
 namespace ProjectNahual.FPCharacter
 {
@@ -23,9 +24,7 @@ namespace ProjectNahual.FPCharacter
             playerCamera = Camera.main;
             canTick = true;
 
-            //Setup cursor when using camera
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
+            CursorHandler.LockCursor();
         }
 
         public void Tick()
@@ -48,6 +47,7 @@ namespace ProjectNahual.FPCharacter
             playerCamera.transform.localRotation = Quaternion.Euler(verticalRotation, 0, 0);
         }
 
-
+        public void Stop() => SetState(false);
+        public void SetState(bool state) => canTick = state;
     }
 }

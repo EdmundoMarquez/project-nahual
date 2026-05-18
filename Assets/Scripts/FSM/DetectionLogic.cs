@@ -7,7 +7,7 @@ namespace ProjectNahual.FSM
         public Transform _agent = null;
         public Transform _target = null;
         public float _viewRadius = 20f;
-        public float _viewAngle = 90f;
+        public float _viewAngle = 120f;
 
         public DetectionLogic(Transform agent, Transform target, float radius, float angle)
         {

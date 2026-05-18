@@ -1,20 +1,22 @@
 using UnityEngine;
 using ProjectNahual.Input;
 using ProjectNahual.Weapons;
+using ProjectNahual.Utils;
 
 namespace ProjectNahual.FPCharacter
 {
-    public class FirstPersonCharacter : MonoBehaviour
+    public class FirstPersonCharacter : MonoBehaviour, IPlayerCharacter
     {
         [Header("References")]
         [SerializeField] private MovementController movementController;
         [SerializeField] private CameraController cameraController;
         [SerializeField] private WeaponController weaponController;
-        [SerializeField] private MonoBehaviour weaponBehaviour;
-        
-        public IWeapon weapon;
+        [SerializeField] private GameObject pauseScreen;
+        public IWeapon _weapon;
         private IPlayerInput playerInput;
         private bool initialized;
+        public bool Initialized => initialized;
+        public Vector3 Position => transform.position;
 
         private void Awake()
         {
@@ -42,25 +44,37 @@ namespace ProjectNahual.FPCharacter
                 return;
             }
 
-            weapon = weaponBehaviour as IWeapon;
-
-            if(weapon == null)
-            {
-                Debug.LogWarning("IWeapon not found. Add an IWeapon instance to this GameObject.");
-                return;
-            }
-
             initialized = true;
+            Registry<IPlayerCharacter>.TryAdd(this);
         }
 
-        private void Start()
+        private void OnDestroy() => Registry<IPlayerCharacter>.Remove(this); 
+        private void OnDisable() => SceneLoader.OnSceneLoad -= Reset;
+
+        public void Init(MonoBehaviour weaponBehaviour)
         {
             if (!initialized) { return; }
 
-            playerInput = GetComponent<StandaloneInputController>();
+            _weapon = weaponBehaviour as IWeapon;
+
+            if(_weapon == null)
+            {
+                Debug.LogWarning("IWeapon not found. Add a valid IWeapon instance to the class profiles.");
+                return;
+            }
+
+            playerInput = Registry<IPlayerInput>.GetFirst();
             movementController.Init(playerInput);
             cameraController.Init(playerInput);
-            weaponController.Init(playerInput, weapon);
+            weaponController.Init(playerInput, _weapon);
+            pauseScreen.SetActive(true);
+
+            SceneLoader.OnSceneLoaded += Reset;
+        }
+
+        public void SetPosition(Vector3 position, Quaternion rotation)
+        {
+            transform.SetPositionAndRotation(position, rotation);
         }
 
 
@@ -70,8 +84,19 @@ namespace ProjectNahual.FPCharacter
             cameraController.Tick();
         }
 
-        private void LateUpdate()
+        public void Reset()
         {
+            movementController.Stop();
+            cameraController.Stop();
+            weaponController.Stop();
+            pauseScreen.SetActive(false);
+        }
+        
+        public void SetState(bool state)
+        {
+            movementController.SetState(state);
+            cameraController.SetState(state);
+            weaponController.SetState(state);
         }
     }
 }

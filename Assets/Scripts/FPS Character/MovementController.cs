@@ -42,6 +42,7 @@ namespace ProjectNahual.FPCharacter
 
         private void OnDisable()
         {
+            if(playerInput == null) return;
             playerInput.CrouchPressed -= OnCrouch;
             playerInput.JumpPressed -= OnJump;
         }
@@ -154,5 +155,8 @@ namespace ProjectNahual.FPCharacter
         {
             isSprinting = playerInput.SprintHold;
         }
+
+        public void Stop() => SetState(false);
+        public void SetState(bool state) => canTick = state;
     }
 }
